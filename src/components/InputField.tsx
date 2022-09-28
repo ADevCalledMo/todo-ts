@@ -1,20 +1,22 @@
 import React from "react";
-import "./InputField.css"
+import "./InputField.css";
 
 interface Props {
-    todo: string, 
-    setTodo: React.Dispatch<React.SetStateAction<string>>
+  todo: string;
+  setTodo: React.Dispatch<React.SetStateAction<string>>;
+  handleAdd: (event: React.FormEvent) => void; // <-- returns nothing
 }
 
-const InputField = ({todo, setTodo}: Props) => {
+const InputField = ({ todo, setTodo, handleAdd }: Props) => {
   return (
-    <form className="input">
-      <input type="input"
-      value={todo}
-      onChange={
-        (event) => setTodo(event.target.value)
-      }
-      placeholder="Enter A Task" className="input__box" />
+    <form className="input" onSubmit={handleAdd}>
+      <input
+        type="input"
+        value={todo}
+        onChange={(event) => setTodo(event.target.value)}
+        placeholder="Enter A Task"
+        className="input__box"
+      />
       <button className="input__submit" type="submit">
         Go
       </button>
